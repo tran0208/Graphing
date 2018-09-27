@@ -31,15 +31,8 @@ namespace Plot
 			//
 			//Graph appearance 
 			this->GraphPaneObj = zedGraphObj->GraphPane;
-			this->LineItemObj = zedGraphObj->GraphPane->AddCurve("y", RollingPointPairListObj, Color::Blue, SymbolType::Circle);
-			this->LineItemObj->Symbol->Fill = gcnew Fill(Color::White);
-			this->LineItemObj->Symbol->Size = 5;
-			//activate the cardinal spline smoothing
-			this->LineItemObj->Line->IsSmooth = true;
-			this->LineItemObj->Line->SmoothTension = 0.5F;
-			this->LineItemObj->Line->Width = 2.0;
-			this->zedGraphObj->IsShowPointValues = false;
-			this->zedGraphObj->AxisChange();
+			this->LineItemObj = zedGraphObj->GraphPane->AddCurve("y", RollingPointPairListObj, Color::Blue, SymbolType::Circle);  
+			this->zedGraphObj->IsShowPointValues = true; 
 			this->xscale = zedGraphObj->GraphPane->XAxis->Scale;
 			this->yscale = zedGraphObj->GraphPane->YAxis->Scale;
 			// 
@@ -81,10 +74,6 @@ namespace Plot
 			GraphPaneObj->YAxis->Scale->FormatAuto = true;
 			GraphPaneObj->YAxis->Scale->Format = "f2";
 
-			//Choosing the right colour for the graph background
-			//Give the graph background some style!!!
-			GraphPaneObj->Chart->Fill = gcnew Fill(Color::White, Color::WhiteSmoke , 0.0  ); 
-  
 
 			//Circular Buffer: with capacity of "XLENGTH" points 
 			RollingPointPairListObj = gcnew RollingPointPairList(XLENGTH); 
@@ -96,6 +85,13 @@ namespace Plot
 			LineItemObj->Line->IsSmooth = true;
 			LineItemObj->Line->SmoothTension = 0.5F;
 			LineItemObj->Line->Width = 2.0;
+ 
+			//Choosing the right colour for the graph background
+			//Give the graph background some style!!!
+			GraphPaneObj->Chart->Fill = gcnew Fill(Color::White, Color::WhiteSmoke, -45.0F);
+			LineItemObj->Line->Fill = gcnew Fill(Color::LightSkyBlue, Color::MistyRose, 60.0F);
+
+
  
 			zedGraphObj->AxisChange();
   
@@ -137,7 +133,7 @@ namespace Plot
 	    ZedGraph::RollingPointPairList ^RollingPointPairListObj;
 	    ZedGraph::LineItem ^LineItemObj;
 	    ZedGraph::Scale ^xscale; 
-		 ZedGraph::Scale ^yscale;
+		ZedGraph::Scale ^yscale;
 
 		System::Void button1_Click( System::Object^ , System::EventArgs^ );
 	    System::Void button2_Click( System::Object^ , System::EventArgs^ );
@@ -213,7 +209,6 @@ namespace Plot
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Load";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Visible = false;
 			this->button1->Click += gcnew System::EventHandler(this, &Main::button1_Click);
 			// 
 			// button2
@@ -250,7 +245,7 @@ namespace Plot
 			// FileDialogA
 			// 
 			this->FileDialogA->FileName = L"\"\"";
-			this->FileDialogA->Filter = L"Text files (*.txt)|*.txt";
+			this->FileDialogA->Filter = L"Text files (*.csv)|*.csv";
 			this->FileDialogA->InitialDirectory = L"C:\\";
 			this->FileDialogA->Title = L"Input Data";
 			// 

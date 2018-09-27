@@ -3,19 +3,15 @@
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <iostream>
-#include <algorithm>
+#include <iostream> 
 #include <string>
 #include <stdexcept>
 
+using namespace System::IO;
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
-using namespace System::Windows::Forms;
-using namespace System::Data;
-using namespace System::Drawing;
-using namespace System::Drawing::Imaging;
-
+using namespace System::Windows::Forms; 
 [STAThreadAttribute]
 int main(array<System::String ^> ^args)
 {
@@ -51,12 +47,67 @@ int main(array<System::String ^> ^args)
 			DialogResult = this->FileDialogA->ShowDialog();
             if (DialogResult == Windows::Forms::DialogResult::OK)
             {
+                t = 0;
+				this->RollingPointPairListObj->Clear();
+				StreamReader^ sr = gcnew StreamReader(this->FileDialogA->FileName);
+				String^ line = sr->ReadLine();
+				String^ s1;
+				String^ s2;
+				cli::array<String^>^ pieces;
+				double value1;
+				double value2;
+				while (line != nullptr)    //sr->Peek() >= 0
+				{
+					Console::WriteLine(line);
+
+					pieces = line->Split(',');
+					if (pieces->Length > 1)
+					{
+						//only input the first two columns 
+						s1 = pieces[0];
+						s2 = pieces[1];
+						try
+						{
+							value1 = Convert::ToDouble(s1);
+							value2 = Convert::ToDouble(s2);
+						}
+						catch (FormatException^ ex)
+						{
+							value1 = 0;
+							value2 = 0;
+						}
+						t = t + 1;
+						this->RollingPointPairListObj->Add(value1, value2, this->t);
+
+
+						//Save largest and smallest value in the y axis
+						if (this->trackYMAX < value2)
+						{
+							this->trackYMAX = value2;
+							this->yscale->Max = this->trackYMAX + minorYStep;
+						}
+						if (this->trackYMIN > value2)
+						{
+							this->trackYMIN = value2;
+							this->yscale->Min = this->trackYMIN - minorYStep;
+						}
+					}
+
+					line = sr->ReadLine();
+
+				}
+				sr->Close();
+
+				this->zedGraphObj->Refresh();
+
+
+
 
             }
-            else
-            {
 
-            }  
+
+
+
         }
         catch( Exception ^ex)
         {

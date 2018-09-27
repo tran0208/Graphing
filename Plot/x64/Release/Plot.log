@@ -1,0 +1,8 @@
+﻿  Main.cpp
+c:\repository\plot-2018-09\plot\main.cpp(24): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(243): note: see declaration of 'freopen'
+c:\repository\plot-2018-09\plot\main.cpp(74): warning C4101: 'ex': unreferenced local variable
+c:\repository\plot-2018-09\plot\main.cpp(112): warning C4101: 'ex': unreferenced local variable
+c:\repository\plot-2018-09\plot\main.cpp(167): warning C4101: 'ex': unreferenced local variable
+  .NETFramework,Version=v4.7.1.AssemblyAttributes.cpp
+  Plot.vcxproj -> C:\Repository\Plot-2018-09\x64\Release\Plot.exe

@@ -1,8 +1,9 @@
 ﻿  Main.cpp
-c:\users\minh tran\desktop\tutorials\plot\plot\main.cpp(28): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\repository\plot-2018-09\plot\main.cpp(24): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(243): note: see declaration of 'freopen'
-c:\users\minh tran\desktop\tutorials\plot\plot\main.cpp(61): warning C4101: 'ex': unreferenced local variable
-c:\users\minh tran\desktop\tutorials\plot\plot\main.cpp(116): warning C4101: 'ex': unreferenced local variable
+c:\repository\plot-2018-09\plot\main.cpp(74): warning C4101: 'ex': unreferenced local variable
+c:\repository\plot-2018-09\plot\main.cpp(112): warning C4101: 'ex': unreferenced local variable
+c:\repository\plot-2018-09\plot\main.cpp(167): warning C4101: 'ex': unreferenced local variable
   .NETFramework,Version=v4.7.1.AssemblyAttributes.cpp
   Main.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  Plot.vcxproj -> C:\Users\Minh Tran\Desktop\Tutorials\Plot\x64\Debug\Plot.exe
+  Plot.vcxproj -> C:\Repository\Plot-2018-09\x64\Debug\Plot.exe
